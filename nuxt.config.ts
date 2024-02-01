@@ -8,5 +8,9 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
-  plugins: ["~/plugins/preline.client.ts"]
+  plugins: ["~/plugins/preline.client.ts"],
+  modules: ["nuxt-tiptap-editor"],
+  tiptap: {
+    prefix: "Tiptap", //prefix for Tiptap imports, composables not included
+  },
 })
