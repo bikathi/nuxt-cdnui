@@ -9,7 +9,7 @@ export default defineNuxtConfig({
     },
   },
   plugins: ["~/plugins/preline.client.ts"],
-  modules: ["nuxt-tiptap-editor"],
+  modules: ["nuxt-tiptap-editor", "@morev/vue-transitions/nuxt"],
   tiptap: {
     prefix: "Tiptap", //prefix for Tiptap imports, composables not included
   },
