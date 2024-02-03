@@ -1,6 +1,6 @@
 <template>
-	<nav class="p-2 h-20 bg-red-500 flex items-center space-between">
-		<Logo />
+	<nav class="p-2 px-6 h-20 flex items-center space-between shadow-md">
+		<Logo :show-logo="false" />
 	</nav>
 </template>
 
