@@ -10,7 +10,11 @@ export default {
 		"./node_modules/preline/preline.js",
 	],
 	theme: {
-		extend: {},
+		extend: {
+			scale: {
+				101: "1.01",
+			},
+		},
 	},
 	plugins: [require("preline/plugin")],
 };
