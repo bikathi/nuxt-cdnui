@@ -10,8 +10,10 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
+    "@tailwindcss/forms": "^0.5.7",
     "autoprefixer": "^10.4.17",
     "nuxt": "^3.10.0",
+    "nuxt-icon": "^0.6.8",
     "nuxt-tiptap-editor": "^0.0.13",
     "postcss": "^8.4.33",
     "tailwindcss": "^3.4.1",
