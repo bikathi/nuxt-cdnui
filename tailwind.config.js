@@ -14,7 +14,13 @@ export default {
 			scale: {
 				101: "1.01",
 			},
+			colors: {
+				dark: "#525252",
+				darker: "#414141",
+				darkest: "#313131",
+				"dark-highlight": "#F9F6EE",
+			},
 		},
 	},
-	plugins: [require("preline/plugin")],
+	plugins: [require("preline/plugin"), require("@tailwindcss/forms")],
 };
