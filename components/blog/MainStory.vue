@@ -10,8 +10,7 @@
 			Top Things To Plan for As You Save Up For 2024 Festive Holidays
 		</h1>
 		<div class="py-2 flex items-center justify-between">
-			<div
-				class="flex items-center space-x-1 dark:text-dark-highlight font-medium">
+			<div class="flex items-center space-x-1 font-medium">
 				<img
 					src="/images/sample-image-b.jpg"
 					alt="Author Image"
