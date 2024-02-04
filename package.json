@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "@morev/vue-transitions": "^2.3.6",
+    "@tiptap/extension-image": "^2.2.1",
     "preline": "^2.0.3"
   }
 }
