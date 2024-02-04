@@ -1,40 +1,31 @@
 <template>
-	<div>
+	<div class="bg-red-500">
 		<div v-if="editor">
 			<button
 				@click="editor.chain().focus().toggleBold().run()"
 				:disabled="!editor.can().chain().focus().toggleBold().run()"
 				:class="{ 'is-active': editor.isActive('bold') }">
-				bold
+				<Icon
+					name="ic:baseline-format-bold"
+					color="currentColor"
+					size="22" />
 			</button>
 			<button
 				@click="editor.chain().focus().toggleItalic().run()"
 				:disabled="!editor.can().chain().focus().toggleItalic().run()"
 				:class="{ 'is-active': editor.isActive('italic') }">
-				italic
-			</button>
-			<button
-				@click="editor.chain().focus().toggleStrike().run()"
-				:disabled="!editor.can().chain().focus().toggleStrike().run()"
-				:class="{ 'is-active': editor.isActive('strike') }">
-				strike
-			</button>
-			<button
-				@click="editor.chain().focus().toggleCode().run()"
-				:disabled="!editor.can().chain().focus().toggleCode().run()"
-				:class="{ 'is-active': editor.isActive('code') }">
-				code
-			</button>
-			<button @click="editor.chain().focus().unsetAllMarks().run()">
-				clear marks
-			</button>
-			<button @click="editor.chain().focus().clearNodes().run()">
-				clear nodes
+				<Icon
+					name="ic:baseline-format-italic"
+					color="currentColor"
+					size="22" />
 			</button>
 			<button
 				@click="editor.chain().focus().setParagraph().run()"
 				:class="{ 'is-active': editor.isActive('paragraph') }">
-				paragraph
+				<Icon
+					name="ph:paragraph-fill"
+					color="currentColor"
+					size="22" />
 			</button>
 			<button
 				@click="
@@ -43,7 +34,10 @@
 				:class="{
 					'is-active': editor.isActive('heading', { level: 1 }),
 				}">
-				h1
+				<Icon
+					name="gravity-ui:heading-1"
+					color="currentColor"
+					size="22" />
 			</button>
 			<button
 				@click="
@@ -52,7 +46,10 @@
 				:class="{
 					'is-active': editor.isActive('heading', { level: 2 }),
 				}">
-				h2
+				<Icon
+					name="gravity-ui:heading-2"
+					color="currentColor"
+					size="22" />
 			</button>
 			<button
 				@click="
@@ -61,70 +58,59 @@
 				:class="{
 					'is-active': editor.isActive('heading', { level: 3 }),
 				}">
-				h3
-			</button>
-			<button
-				@click="
-					editor.chain().focus().toggleHeading({ level: 4 }).run()
-				"
-				:class="{
-					'is-active': editor.isActive('heading', { level: 4 }),
-				}">
-				h4
-			</button>
-			<button
-				@click="
-					editor.chain().focus().toggleHeading({ level: 5 }).run()
-				"
-				:class="{
-					'is-active': editor.isActive('heading', { level: 5 }),
-				}">
-				h5
-			</button>
-			<button
-				@click="
-					editor.chain().focus().toggleHeading({ level: 6 }).run()
-				"
-				:class="{
-					'is-active': editor.isActive('heading', { level: 6 }),
-				}">
-				h6
+				<Icon
+					name="gravity-ui:heading-3"
+					color="currentColor"
+					size="22" />
 			</button>
 			<button
 				@click="editor.chain().focus().toggleBulletList().run()"
 				:class="{ 'is-active': editor.isActive('bulletList') }">
-				bullet list
+				<Icon
+					name="material-symbols:list"
+					color="currentColor"
+					size="22" />
 			</button>
 			<button
 				@click="editor.chain().focus().toggleOrderedList().run()"
 				:class="{ 'is-active': editor.isActive('orderedList') }">
-				ordered list
+				<Icon
+					name="gravity-ui:list-ol"
+					color="currentColor"
+					size="22" />
 			</button>
 			<button
 				@click="editor.chain().focus().toggleCodeBlock().run()"
 				:class="{ 'is-active': editor.isActive('codeBlock') }">
-				code block
+				<Icon
+					name="ic:twotone-code"
+					color="currentColor"
+					size="22" />
 			</button>
 			<button
 				@click="editor.chain().focus().toggleBlockquote().run()"
 				:class="{ 'is-active': editor.isActive('blockquote') }">
-				blockquote
-			</button>
-			<button @click="editor.chain().focus().setHorizontalRule().run()">
-				horizontal rule
-			</button>
-			<button @click="editor.chain().focus().setHardBreak().run()">
-				hard break
+				<Icon
+					name="mdi:format-quote-close"
+					color="currentColor"
+					size="22" />
 			</button>
 			<button
-				@click="editor.chain().focus().undo().run()"
-				:disabled="!editor.can().chain().focus().undo().run()">
-				undo
-			</button>
-			<button
-				@click="editor.chain().focus().redo().run()"
-				:disabled="!editor.can().chain().focus().redo().run()">
-				redo
+				@click="
+					editor
+						.chain()
+						.focus()
+						.setImage({
+							src: 'https://images.pexels.com/photos/104827/cat-pet-animal-domestic-104827.jpeg',
+							alt: 'Sample Alt Text',
+						})
+						.run()
+				"
+				:class="{ 'is-active': editor.isActive('blockquote') }">
+				<Icon
+					name="ic:outline-image"
+					color="currentColor"
+					size="20" />
 			</button>
 		</div>
 		<TiptapEditorContent :editor="editor" />
@@ -132,8 +118,12 @@
 </template>
 
 <script setup lang="ts">
+	import Image from "@tiptap/extension-image";
 	const editor = useEditor({
-		content: "<p>I'm running Tiptap with Vue.js. 🎉</p>",
-		extensions: [TiptapStarterKit],
+		content: "<p>What's on your mind?...</p>",
+		extensions: [TiptapStarterKit.configure({ codeBlock: false }), Image],
+		onUpdate: (editor) => {
+			console.log(editor.editor.getHTML());
+		},
 	});
 </script>
