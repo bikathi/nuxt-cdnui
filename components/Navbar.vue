@@ -1,5 +1,5 @@
 <template>
-	<nav class="p-2 px-6 h-20 flex space-between shadow-md">
+	<nav class="p-2 px-6 h-20 flex space-between shadow-md sticky top-0 dark:bg-darkest">
 		<div class="w-3/4 h-full flex items-center">
 			<Logo :show-logo="false" />
 		</div>
