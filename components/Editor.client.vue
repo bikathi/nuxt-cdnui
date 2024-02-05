@@ -1,7 +1,5 @@
 <template>
-	<div
-		class="mx-64 h-screen min-h-screen bg-red-500"
-		@keydown.esc="handleEditorEscKeypress">
+	<div>
 		<div
 			v-if="editor && isInnerDivVisible"
 			:style="{
@@ -122,8 +120,9 @@
 			</button>
 		</div>
 		<TiptapEditorContent
+			@keydown.esc="handleEditorEscKeypress"
 			:editor="editor"
-			class="p-2 h-full min-h-full" />
+			class="p-2" />
 	</div>
 </template>
 
@@ -141,7 +140,7 @@
 	const isInnerDivVisible = ref(false);
 	const innerDivPosition = ref({ x: 0, y: 0 });
 	const editor = useEditor({
-		content: "<h1>What's on your mind?...</h1>",
+		content: "<h1>Start by giving your blog a title...</h1>",
 		extensions: [TiptapStarterKit.configure({ codeBlock: false }), Image],
 		onUpdate: (editor) => {
 			console.log(editor.editor.getHTML());
@@ -151,7 +150,7 @@
 	function handleEditorDivHighlight() {
 		isInnerDivVisible.value = true;
 		innerDivPosition.value = {
-			x: rects.value[0].x,
+			x: rects.value[0].x + -40,
 			y: rects.value[0].y + -40,
 		};
 	}
@@ -185,8 +184,7 @@
 		}
 
 		h1 {
-			font-size: 1.1rem;
-			font-size: 1.4rem;
+			font-size: 2.0rem;
 			font-weight: bolder;
 		}
 

@@ -1,6 +1,6 @@
 <template>
 	<div class="p-2 h-fit">
-		<div class="w-full h-[35rem]">
+		<div class="w-full h-[13rem] md:h-[35rem]">
 			<img
 				src="/images/sample-image.jpg"
 				alt="Main Article Image"
@@ -10,11 +10,11 @@
 			Top Things To Plan for As You Save Up For 2024 Festive Holidays
 		</h1>
 		<div class="py-2 flex items-center justify-between">
-			<div class="flex items-center space-x-1 font-medium">
+			<div class="flex items-center space-x-1 font-medium text-sm md:text-base">
 				<img
 					src="/images/sample-image-b.jpg"
 					alt="Author Image"
-					class="w-12 h-12 rounded-full object-cover ring-dark-highlight ring-2 p-1" />
+					class="w-8 md:w-12 h-8 md:h-12 rounded-full object-cover ring-dark-highlight ring-2 p-1" />
 				<span class="text-2xl">&middot;</span>
 				<span>Micheal Angelo</span>
 				<span class="text-2xl">&middot;</span>
