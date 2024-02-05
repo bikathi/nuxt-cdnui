@@ -1,5 +1,8 @@
 <template>
-	<Editor />
+	<div class="flex-grow px-2 lg:px-64">
+		<BlogReaderImage />
+		<Editor />
+	</div>
 </template>
 
 <script setup lang="ts">
