@@ -1,6 +1,14 @@
 <template>
-	<div class="bg-red-500">
-		<div v-if="editor">
+	<div
+		class="mx-64 h-screen min-h-screen bg-red-500"
+		@keydown.esc="handleEditorEscKeypress">
+		<div
+			v-if="editor && isInnerDivVisible"
+			:style="{
+				top: `${innerDivPosition.y}px`,
+				left: `${innerDivPosition.x}px`,
+			}"
+			class="w-fit p-2 flex items-center space-x-2 rounded-lg shadow-md dark:bg-darker dark:text-dark-highlight absolute z-40">
 			<button
 				@click="editor.chain().focus().toggleBold().run()"
 				:disabled="!editor.can().chain().focus().toggleBold().run()"
@@ -113,17 +121,115 @@
 					size="20" />
 			</button>
 		</div>
-		<TiptapEditorContent :editor="editor" />
+		<TiptapEditorContent
+			:editor="editor"
+			class="p-2 h-full min-h-full" />
 	</div>
 </template>
 
 <script setup lang="ts">
 	import Image from "@tiptap/extension-image";
+	import { useTextSelection } from "@vueuse/core";
+
+	const { rects } = useTextSelection();
+	watch(rects, (oldValue, newValue) => {
+		if (oldValue != newValue) {
+			handleEditorDivHighlight();
+		}
+	});
+
+	const isInnerDivVisible = ref(false);
+	const innerDivPosition = ref({ x: 0, y: 0 });
 	const editor = useEditor({
-		content: "<p>What's on your mind?...</p>",
+		content: "<h1>What's on your mind?...</h1>",
 		extensions: [TiptapStarterKit.configure({ codeBlock: false }), Image],
 		onUpdate: (editor) => {
 			console.log(editor.editor.getHTML());
 		},
 	});
+
+	function handleEditorDivHighlight() {
+		isInnerDivVisible.value = true;
+		innerDivPosition.value = {
+			x: rects.value[0].x,
+			y: rects.value[0].y + -40,
+		};
+	}
+
+	function handleEditorEscKeypress() {
+		isInnerDivVisible.value = false;
+	}
 </script>
+
+<style lang="css">
+	/* Basic editor styles */
+	.tiptap {
+		outline: none;
+		width: 100%;
+		text-wrap: wrap;
+		min-height: 100%;
+		margin-bottom: 1px;
+
+		> * + * {
+			margin-top: 0.75em;
+		}
+
+		ul {
+			padding: 0 1rem;
+			list-style-type: disc;
+		}
+
+		ol {
+			padding: 0 1rem;
+			list-style-type: lower-roman;
+		}
+
+		h1 {
+			font-size: 1.1rem;
+			font-size: 1.4rem;
+			font-weight: bolder;
+		}
+
+		h2 {
+			font-size: 1.1rem;
+			font-weight: bold;
+		}
+
+		code {
+			background-color: rgba(#616161, 0.1);
+			color: #616161;
+		}
+
+		pre {
+			background: #0d0d0d;
+			color: #fff;
+			font-family: "JetBrainsMono", monospace;
+			padding: 0.75rem 1rem;
+			border-radius: 0.5rem;
+
+			code {
+				color: inherit;
+				padding: 0;
+				background: none;
+				font-size: 0.8rem;
+			}
+		}
+
+		img {
+			max-width: 100%;
+			height: auto;
+			border: 1px solid;
+			border-radius: 5px;
+			width: 95%;
+			height: auto;
+		}
+
+		blockquote {
+			padding-left: 1rem;
+			border-left: 5px solid rgb(51 65 85);
+			padding-top: 2px;
+			font-weight: 600;
+			padding-bottom: 2px;
+		}
+	}
+</style>
