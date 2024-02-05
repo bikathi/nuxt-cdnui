@@ -11,6 +11,8 @@
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.7",
+    "@vueuse/core": "^10.7.2",
+    "@vueuse/nuxt": "^10.7.2",
     "autoprefixer": "^10.4.17",
     "nuxt": "^3.10.0",
     "nuxt-icon": "^0.6.8",
